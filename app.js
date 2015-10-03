@@ -1,36 +1,34 @@
 $(document).ready(function(){
 
-  //variables
-  var clientID = "155b290399484dd39e1dda80c3864fc1";
-
-  /* Event Handlers */
   //Search Input
-  $('.hash-getter').submit(function(event){
+  $('.lp-search').submit(function(event){
     // zero out results if previous search has run
     $('.search-title').html('');
-    var tag = $(this).find('input[name="hashtag"]').val();
-    showSearchTitle(tag);
-    getResult(tag);
+    var artist = $(this).find('input[name="vinyl"]').val();
+    showSearchTitle(artist);
+
+    getResult(artist);
   });
 
-
-  function showSearchTitle(tag){
-    console.log(tag);
-    $('.search-title').html(tag);
+  function showSearchTitle(artist){
+    console.log(artist);
+    $('.search-title').html(artist);
   }
 
-  //get the auth right
+  var getResult = function(data){
+    var baseUrl = "https://api.discogs.com/";
+    //artistSearchUrl
+    var artistUrl = baseUrl + 'artists/' + data;
 
-  function getResult(tag){
-
-    var result = $.ajax({
-      type: 'GET',
-      dataType: 'jsonp',
-      url : 'https://api.instagram.com/v1/tags/tag/media/recent?client_id=155b290399484dd39e1dda80c3864fc1'
+    $.ajax({
+      data: data,
+      dataType: "JSONP",
+      type: "GET",
+      url: artistUrl
     })
-    .done(function(result){
-      console.log(result);
+    .done(function(data){
+      console.log(data);
     });
-  }
+  };
 
 });
