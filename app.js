@@ -9,26 +9,35 @@ $(document).ready(function(){
 
     getResult(artist);
   });
+
   //Functions
   function showSearchTitle(artist){
     console.log(artist);
     $('.search-title').html(artist);
   }
 
+  var showSearchResults = function(query, resultNum) {
+	  var results = resultNum + ' results for <strong>' + query;
+	  return results;
+  };
+
   var getResult = function(data){
     var baseUrl = "https://api.discogs.com/";
     var personalToken = 'rYmnwpDTRWMThtDZpBVvBjgbovfzmlhoXBMxWUbf';
-    //artistSearchUrl
-    var searchUrl = baseUrl + 'database/search?q=' + data + '&per_page=100&page=1&token=' + personalToken;
+
+    //SearchUrl
+    var searchUrl = baseUrl + 'database/search?q=' + data + '&release_title=' + data + '&per_page=20&page=1&token=' + personalToken;
 
     $.ajax({
-      data: data,
-      dataType: "JSONP",
-      type: "GET",
-      url: searchUrl
+      url: searchUrl,
+      type: 'GET',
+      dataType: 'JSONP'
     })
-    .done(function(data){
-      console.log(data);
+    .done(function(result){
+      console.log(result);
+
+      var test = result.data.results[0].title;
+      console.log(test);
     });
   };
 
