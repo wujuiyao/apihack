@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  //Search Input
+  //Event Listeners
   $('.lp-search').submit(function(event){
     // zero out results if previous search has run
     $('.search-title').html('');
@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     getResult(artist);
   });
-
+  //Functions
   function showSearchTitle(artist){
     console.log(artist);
     $('.search-title').html(artist);
@@ -17,14 +17,15 @@ $(document).ready(function(){
 
   var getResult = function(data){
     var baseUrl = "https://api.discogs.com/";
+    var personalToken = 'rYmnwpDTRWMThtDZpBVvBjgbovfzmlhoXBMxWUbf';
     //artistSearchUrl
-    var artistUrl = baseUrl + 'artists/' + data;
+    var searchUrl = baseUrl + 'database/search?q=' + data + '&per_page=100&page=1&token=' + personalToken;
 
     $.ajax({
       data: data,
       dataType: "JSONP",
       type: "GET",
-      url: artistUrl
+      url: searchUrl
     })
     .done(function(data){
       console.log(data);
