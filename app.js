@@ -39,11 +39,11 @@ $(document).ready(function(){
       var searchResults = showSearchResults(data, result.data.results.length);
 		  $('.search-title').html(searchResults);
       var obExtension = result.data.results;
-
+      //
 
 
     })
-
+    // find a way to test the fail function
     .fail(function(error){
       var errorElem = showError(error);
   		$('.search-title').append(errorElem);
