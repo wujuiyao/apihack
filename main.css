@@ -49,5 +49,9 @@ table {
 
 /*My css*/
 html{
-  font-family: 'Cabin', sans-serif; 
+  font-family: 'Cabin', sans-serif;
+}
+
+.hidden {
+	display: none;
 }

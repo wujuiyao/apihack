@@ -5,17 +5,17 @@ $(document).ready(function(){
     // zero out results if previous search has run
     $('.search-title').html('');
     var artist = $(this).find('input[name="vinyl"]').val();
-    showSearchTitle(artist);
-
     getResult(artist);
   });
 
   //Functions
-  function showSearchTitle(artist){
-    console.log(artist);
-    $('.search-title').html(artist);
-  }
-
+  // takes error string and turns it into displayable DOM element
+  var showError = function(error){
+    var errorElem = $('.templates .error').clone();
+    var errorText = '<p>' + error + '</p>';
+    errorElem.append(errorText);
+  };
+  /*Query Function*/
   var showSearchResults = function(query, resultNum) {
 	  var results = resultNum + ' results for <strong>' + query;
 	  return results;
@@ -26,7 +26,7 @@ $(document).ready(function(){
     var personalToken = 'rYmnwpDTRWMThtDZpBVvBjgbovfzmlhoXBMxWUbf';
 
     //SearchUrl
-    var searchUrl = baseUrl + 'database/search?q=' + data + '&release_title=' + data + '&per_page=20&page=1&token=' + personalToken;
+    var searchUrl = baseUrl + 'database/search?q=' + data + '&per_page=20&page=1&token=' + personalToken;
 
     $.ajax({
       url: searchUrl,
@@ -36,8 +36,17 @@ $(document).ready(function(){
     .done(function(result){
       console.log(result);
 
-      var test = result.data.results[0].title;
-      console.log(test);
+      var searchResults = showSearchResults(data, result.data.results.length);
+		  $('.search-title').html(searchResults);
+      var obExtension = result.data.results;
+
+
+
+    })
+
+    .fail(function(error){
+      var errorElem = showError(error);
+  		$('.search-title').append(errorElem);
     });
   };
 
