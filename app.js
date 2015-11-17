@@ -17,8 +17,14 @@ $(document).ready(function(){
   };
   /*Query Function*/
   var showSearchResults = function(query, resultNum) {
-	  var results = resultNum + ' results for <strong>' + query;
+	  var results = resultNum + ' Results for <strong>' + query;
 	  return results;
+  };
+
+  var showSearch = function(artist){
+    var search = $('.templates .artist-search').clone();
+    var inputSearch = search.find('.artist-title');
+    inputSearch.text(artist.title);
   };
 
   var getResult = function(data){
@@ -38,12 +44,17 @@ $(document).ready(function(){
 
       var searchResults = showSearchResults(data, result.data.results.length);
 		  $('.search-title').html(searchResults);
+
       var obExtension = result.data.results;
-      //
 
-
+      $.each(obExtension, function(index, item){
+        var showAllResults = showSearch(item);
+        $('.templates').append(showAllResults);
+       })
     })
-    // find a way to test the fail function
+
+
+    // find a way to test the fail function -- later test -- just input a wrong website link
     .fail(function(error){
       var errorElem = showError(error);
   		$('.search-title').append(errorElem);
