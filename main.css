@@ -55,8 +55,17 @@ html{
 .hidden {
 	display: none;
 }
-.result {
+.answer-search {
 	border: 1px solid black;
 	padding: 5px;
 	margin: 0 auto 1em auto;
+}
+
+.results{
+	background-color: #f8f8f8;
+}
+
+.container {
+	margin: 3em auto;
+	width: 600px;
 }

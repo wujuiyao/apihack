@@ -1,38 +1,36 @@
 $(document).ready(function(){
 
-  //Event Listeners
+  /*Event Listeners*/
   $('.lp-search').submit(function(event){
     // zero out results if previous search has run
-    $('.search-title').html('');
+    $('.results').html('');
     var artist = $(this).find('input[name="vinyl"]').val();
     getResult(artist);
   });
 
-  //Functions
+  /*Functions*/
   // takes error string and turns it into displayable DOM element
   var showError = function(error){
     var errorElem = $('.templates .error').clone();
     var errorText = '<p>' + error + '</p>';
     errorElem.append(errorText);
   };
-  /*Query Function*/
   var showSearchResults = function(query, resultNum) {
 	  var results = resultNum + ' Results for <strong>' + query;
 	  return results;
   };
+  var displaySearch = function(inputTag){
+    var search = $('.templates .artist-search').clone();
+    //Display the Artist Title
+    var artistTitle = search.find('.artist-title');
+    artistTitle.text(inputTag.title);
 
-  var showSearch = function(test){
-    // var search = $('.templates .artist-search').clone();
-    var inputSearch = $('.artist-title').clone();
-    //try here to get the exact json data
-    inputSearch.text(test);
+    return search;
   };
-
+  /*JSON Function*/
   var getResult = function(data){
     var baseUrl = "https://api.discogs.com/";
     var personalToken = 'rYmnwpDTRWMThtDZpBVvBjgbovfzmlhoXBMxWUbf';
-
-    //SearchUrl
     var searchUrl = baseUrl + 'database/search?q=' + data + '&per_page=20&page=1&token=' + personalToken;
 
     $.ajax({
@@ -42,15 +40,14 @@ $(document).ready(function(){
     })
     .done(function(result){
       console.log(result);
-
+      //Display the user's search results
       var searchResults = showSearchResults(data, result.data.results.length);
 		  $('.search-title').html(searchResults);
-
-      $.each(result.data.results, function(i, a){
-        var showAllResults = showSearch(a);
+      //Display the details of each objects
+      $.each(result.data.results, function(index, item){
+        var showAllResults = displaySearch(item);
         $('.results').append(showAllResults);
       });
-
     })
 
     // find a way to test the fail function -- later test -- just input a wrong website link
