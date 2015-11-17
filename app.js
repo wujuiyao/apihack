@@ -21,10 +21,11 @@ $(document).ready(function(){
 	  return results;
   };
 
-  var showSearch = function(artist){
-    var search = $('.templates .artist-search').clone();
-    var inputSearch = search.find('.artist-title');
-    inputSearch.text(artist.title);
+  var showSearch = function(test){
+    // var search = $('.templates .artist-search').clone();
+    var inputSearch = $('.artist-title').clone();
+    //try here to get the exact json data
+    inputSearch.text(test);
   };
 
   var getResult = function(data){
@@ -45,14 +46,12 @@ $(document).ready(function(){
       var searchResults = showSearchResults(data, result.data.results.length);
 		  $('.search-title').html(searchResults);
 
-      var obExtension = result.data.results;
+      $.each(result.data.results, function(i, a){
+        var showAllResults = showSearch(a);
+        $('.results').append(showAllResults);
+      });
 
-      $.each(obExtension, function(index, item){
-        var showAllResults = showSearch(item);
-        $('.templates').append(showAllResults);
-       })
     })
-
 
     // find a way to test the fail function -- later test -- just input a wrong website link
     .fail(function(error){
