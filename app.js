@@ -19,13 +19,25 @@ $(document).ready(function(){
 	  var results = resultNum + ' Results for <strong>' + query;
 	  return results;
   };
-  var displaySearch = function(inputTag){
-    var search = $('.templates .artist-search').clone();
-    //Display the Artist Title
-    var artistTitle = search.find('.artist-title');
-    artistTitle.text(inputTag.title);
 
-    return search;
+
+  var displaySearch = function(inputTag){
+    var searchTitle = $('.templates .artist-search').clone();
+
+    //Display the Artist Title
+    var artistTitle = searchTitle.find('.artist-title');
+    artistTitle.text(inputTag.title);
+    //Display the Artist Thumbnail
+    var artistThumb = searchTitle.find('.artist-thumb');
+    var imageLink = inputTag.thumb;
+    artistThumb.prepend('<img src="'+ imageLink + '" alt="">');
+    //Display the Artist ID
+    var artistId = searchTitle.find('.artist-id');
+    artistId.prepend('<p>Discogs ID</p>' + inputTag.id);
+    //Display the Artist Discogs Link Using a Button
+    var artistLink = searchTitle.find('');
+
+    return searchTitle;
   };
   /*JSON Function*/
   var getResult = function(data){
@@ -45,6 +57,8 @@ $(document).ready(function(){
 		  $('.search-title').html(searchResults);
       //Display the details of each objects
       $.each(result.data.results, function(index, item){
+        //index here is the number and item is the whole object itself
+        console.log(index, item);
         var showAllResults = displaySearch(item);
         $('.results').append(showAllResults);
       });
