@@ -35,7 +35,7 @@ $(document).ready(function(){
     artistId.prepend('<p>Discogs ID</p>' + inputTag.id);
     //Display the Artist Discogs Link Using a Button
     var artistLink = inputTag.uri;
-    var artistUri = searchTitle.find('a .artist-uri');
+    var artistUri = searchTitle.find('.artist-uri');
     artistUri.attr('href', "http://www.discogs.com"+artistLink);
 
     return searchTitle;
@@ -59,7 +59,6 @@ $(document).ready(function(){
       //Display the details of each objects
       $.each(result.data.results, function(index, item){
         //index here is the number and item is the whole object itself
-        console.log(index, item);
         var showAllResults = displaySearch(item);
         $('.results').append(showAllResults);
       });
