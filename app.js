@@ -20,7 +20,6 @@ $(document).ready(function(){
 	  return results;
   };
 
-
   var displaySearch = function(inputTag){
     var searchTitle = $('.templates .artist-search').clone();
 
@@ -35,7 +34,9 @@ $(document).ready(function(){
     var artistId = searchTitle.find('.artist-id');
     artistId.prepend('<p>Discogs ID</p>' + inputTag.id);
     //Display the Artist Discogs Link Using a Button
-    var artistLink = searchTitle.find('');
+    var artistLink = inputTag.uri;
+    var artistUri = searchTitle.find('a .artist-uri');
+    artistUri.attr('href', "http://www.discogs.com"+artistLink);
 
     return searchTitle;
   };
@@ -64,9 +65,8 @@ $(document).ready(function(){
       });
     })
 
-    // find a way to test the fail function -- later test -- just input a wrong website link
-    .fail(function(error){
-      var errorElem = showError(error);
+    .fail(function(errorResult){
+      var errorElem = showError(errorResult);
   		$('.search-title').append(errorElem);
     });
   };
