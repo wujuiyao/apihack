@@ -51,21 +51,27 @@ table {
 html{
   font-family: 'Cabin', sans-serif;
 }
-
 .hidden {
 	display: none;
 }
-.answer-search {
-	border: 1px solid black;
-	padding: 5px;
-	margin: 0 auto 1em auto;
+.container {
+	margin: 3em auto;
+	width: 90%;
 }
+hr{
+	border: none;
+  height: 1px;
+	background-color: #555555;
+}
+
+/*Find a way to do the responsive*/
 
 .results{
 	background-color: #f8f8f8;
 }
-
-.container {
-	margin: 3em auto;
-	width: 600px;
+.artist-search{
+	width: 33%;
+	margin: 0px 10px;
+	background-color: #f7f7f7;
+	display: inline-block;
 }
