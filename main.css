@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -54,24 +53,66 @@ html{
 .hidden {
 	display: none;
 }
-.container {
-	margin: 3em auto;
-	width: 90%;
-}
 hr{
 	border: none;
   height: 1px;
 	background-color: #555555;
 }
+.container{
+	width: 90%;
+	margin: 0 auto;
+}
+.search-bar{
+	margin-top: 30px;
+	text-align: center;
+}
+.search-bar h2{
+	font-size: 2.8em;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+.search-bar h4{
+	font-size: 0.8em;
+	font-weight: 400;
+	margin-left: 260px;
+	padding-bottom: 25px;
+	padding-top: 10px;
+}
+.lp-search{
+	margin-top:15px;
+	margin-bottom: 45px;
+}
+.lp-search input:first-child{
+	width: 300px;
+	height: 40px;
+}
 
-/*Find a way to do the responsive*/
 
 .results{
-	background-color: #f8f8f8;
+	clear: both;
 }
-.artist-search{
-	width: 33%;
-	margin: 0px 10px;
-	background-color: #f7f7f7;
-	display: inline-block;
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {clear:both;}
+.group {zoom:1; /* For IE 6/7 */}
+
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:nth-child(3n) {margin-left: 0;}
+
+.span_1_of_3 {
+	width: 31%;
+}
+
+
+/*media queries*/
+@media only screen and (max-width: 480px) {
+	.col { margin: 1% 0 1% 0%;}
+	.span_1_of_3 { width: 100%; }
 }
