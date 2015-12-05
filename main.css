@@ -85,8 +85,29 @@ hr{
 .lp-search input:first-child{
 	width: 300px;
 	height: 40px;
+	font-size: 25px;
+	padding-left: 5px;
+	font-family: 'Cabin', sans-serif !important;
+	color: #424242;
+	font-size: 400;
 }
 
+input[type=submit]{
+	width: 100px;
+	margin-left: 20px;
+	padding: 14px 0px;
+	background:#FFC567;
+	color: #fff; 
+	border:0 none;
+	cursor:pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; 
+	vertical-align: top;
+	font-size: 16px;
+	letter-spacing: 0.04em;
+}
+
+  
 
 .results{
 	clear: both;
@@ -108,6 +129,13 @@ hr{
 
 .span_1_of_3 {
 	width: 31%;
+}
+.search-title{
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 20px;
+	font-size: 2.1em;
+	font-weight: 700;
 }
 
 
